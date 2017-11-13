@@ -7,7 +7,7 @@ import utilidades.ES;
  * Clase principal del programa, que consiste en un bucle do-while que estar�
  * iterando continuamente mientras que el usuario no introduzca un 0.
  *
- * @author
+ * @author Ubaldo Hidalgo Arriaga
  */
 public class Principal {
 
@@ -42,7 +42,7 @@ public class Principal {
             // Dibujar la caja con el m�todo apropiado
             box.dibujar();
             // Leer un valor entero por teclado para aumentar la altura de la caja 
-            int aumento = ES.leeEntero("Escriba un número entre 2 y 7 para aumentar la altura de la caja en ese valor:");
+            int aumento = ES.leeEntero("Escriba un número entre 2 y 7 para aumentar la anchura de la caja en ese valor:");
             // usando el m�todo creado para tal efecto.
             box.aumentarAnchura(aumento);
             // Escribir los datos de la caja.

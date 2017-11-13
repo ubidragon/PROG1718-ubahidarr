@@ -34,10 +34,32 @@ public class Caja {
     public char caracter;
     public Material material;
 
+    /**
+     * Tipo Enumerado de Materiales
+     */
     public enum Material {
-        MADERA, CORCHO, PLASTICO, CARTON
+        /**
+         * Madera
+         */
+        MADERA,
+        /**
+         * Corcho
+         */
+        CORCHO,
+        /**
+         * Plastico
+         */
+        PLASTICO,
+        /**
+         * Carton
+         */
+        CARTON
     };
 
+    /**
+    *Contructor por defecto que no recibe parametros
+    * 
+    */
     public Caja() {
         this.x = 5;
         this.y = 2;
@@ -46,6 +68,13 @@ public class Caja {
 
     }
 
+    /**
+     * Contructor con parametros
+     * @param x Numero de columnas
+     * @param y Numero de filas
+     * @param caracter Caracter con el que dibujaremos la caja
+     * @param material Material de la caja
+     */
     public Caja(int x, int y, char caracter, Material material) {
         this.x = x;
         this.y = y;
@@ -53,30 +82,58 @@ public class Caja {
         this.material = material;
     }
 
+    /**
+     * 
+     * @return Numero de columnas actual
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * 
+     * @param x nuevo numero de columnas
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * 
+     * @return numero de filas actual
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * 
+     * @param y nuevo numero de filas
+     */
     public void setY(int y) {
         this.y = y;
     }
 
+    /**
+     * 
+     * @return Caracter actual para dibujar la caja
+     */
     public char getCaracter() {
         return caracter;
     }
 
+    /**
+     * 
+     * @param caracter nuevo caracterque imprimiremos
+     */
     public void setCaracter(char caracter) {
         this.caracter = caracter;
     }
 
+    /**
+     * Metodo que dibuja por consola la caja
+     * @return Devuelve un tipo String con el dibujo realizado
+     */
     public String dibujar() {
         String caja ="";
 
@@ -91,6 +148,11 @@ public class Caja {
         return caja;
     }
 
+    /**
+     * 
+     * @param unidades numero entero que indicara el aumento de la caja
+     * @return Aumenta el valor de la anchura si es mayor que 0
+     */
     public boolean aumentarAnchura(int unidades) {
         boolean aumento = false;
         if (unidades > 0) {
@@ -102,6 +164,9 @@ public class Caja {
         return aumento;
     }
 
+    /**
+     * Metodo modificador que intercambia los valores de X e Y
+     */
     public void girarCaja() {
       int giroX = getY();
       int giroY = getX();
@@ -110,6 +175,14 @@ public class Caja {
 
     }
 
+    
+    /**
+     * Metodo estatico que transformara el numero recibido por consola en uno de
+     * los materiales
+     * @param numero numero entero
+     * @return devolvera un material que estara asociado a dicho numero
+     * 
+     */
     public static Material enteroAMaterial(int numero) {
         Material material;
         switch (numero) {
@@ -133,6 +206,10 @@ public class Caja {
         return material;
     }
 
+    /**
+     * 
+     * @return Imprime la informacion del objeto Caja que hemos creado
+     */
     public String toString() {
         return "La caja se dibuja con el caracter: \"" + caracter + "\" y se dibujara con: " + getX() + " columnas y " + getY() + " filas. El material de la caja es: " + this.material;
     }
