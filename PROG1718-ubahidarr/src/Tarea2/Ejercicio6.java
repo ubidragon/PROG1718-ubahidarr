@@ -100,15 +100,16 @@ public class Ejercicio6 {
         } while (1 > ancho || ancho > 20);
 
         int ancho2 = ancho - 2;
-        int ancho3 = ancho - 4;
+        int ancho3 = ancho - 3;
         for (int i = 0; i < ancho2; i++) {
+         
             first += "-";
         }
         System.out.println("+" + first + "+");
 
+       
         for (int i = 0; i < alto - 2; i++) {
 
-            int alto2 = alto - 3;
             System.out.print("|*");
 
             if (i == 0 || i == (alto - 3)) {
@@ -119,14 +120,15 @@ public class Ejercicio6 {
                 }
 
             } else {
-
-                for (int j = 0; j < ancho3; j++) {
+                
+                for (int j = 0; j < ancho3 - 1; j++) {
+                    
                     cuerpo2 = " ";
                     System.out.print(cuerpo2);
                 }
-
+                System.out.print("*");
             }
-            System.out.println("*|");
+            System.out.println("|");
         }
 
         for (int i = 0; i < ancho2; i++) {
