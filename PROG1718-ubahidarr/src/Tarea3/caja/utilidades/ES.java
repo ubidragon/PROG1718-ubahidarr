@@ -1,6 +1,8 @@
-package utilidades ;
+package Tarea3.caja.utilidades ;
 
 import java.util.Scanner;
+
+
 
 /**
  * Esta clase define algunos m�todos para entrada de datos, de forma que se 

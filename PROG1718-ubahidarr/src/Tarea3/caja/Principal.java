@@ -1,7 +1,7 @@
 package Tarea3.caja;
 
 import Tarea3.caja.Caja.Material;
-import utilidades.ES;
+import Tarea3.caja.utilidades.ES;
 
 /**
  * Clase principal del programa, que consiste en un bucle do-while que estar�
