@@ -1,6 +1,6 @@
-package caja;
+package Tarea3.caja;
 
-import caja.Caja.Material;
+import Tarea3.caja.Caja.Material;
 import utilidades.ES;
 
 /**
