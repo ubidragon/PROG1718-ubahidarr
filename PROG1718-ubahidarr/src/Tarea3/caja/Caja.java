@@ -158,7 +158,7 @@ public class Caja {
         if (unidades > 0) {
             aumento = true;
         }
-        if (aumento = true) {
+        if (aumento == true) {
             setX(getX() + unidades);
         }
         return aumento;
