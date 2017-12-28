@@ -1,4 +1,4 @@
-package Tarea3.caja.utilidades ;
+package Tarea03.caja.utilidades ;
 
 import java.util.Scanner;
 

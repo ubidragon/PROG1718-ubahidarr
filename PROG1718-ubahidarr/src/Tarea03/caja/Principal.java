@@ -1,7 +1,7 @@
-package Tarea3.caja;
+package Tarea03.caja;
 
-import Tarea3.caja.Caja.Material;
-import Tarea3.caja.utilidades.ES;
+import Tarea03.caja.Caja.Material;
+import Tarea03.caja.utilidades.ES;
 
 /**
  * Clase principal del programa, que consiste en un bucle do-while que estar�
@@ -39,6 +39,18 @@ public class Principal {
             Caja box = new Caja(columnas, filas, caracter, material);
             // Usar toString para mostrar los valores del objeto reci�n creado
             ES.msgln(box.toString());
+            
+            columnas = ES.leeEntero("Escribe el número de columnas que tendrá la caja");
+            // Pedir por teclado el n�mero de filas que tendr� la caja
+            filas = ES.leeEntero("Escribe el número de filas que tendrá la caja");
+            
+            box.setX(columnas);
+            box.setY(filas);
+            
+             ES.msgln(box.toString());
+            
+            
+            
             // Dibujar la caja con el m�todo apropiado
             box.dibujar();
             // Leer un valor entero por teclado para aumentar la altura de la caja 

@@ -1,4 +1,4 @@
-package Tarea2;
+package Tarea02;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

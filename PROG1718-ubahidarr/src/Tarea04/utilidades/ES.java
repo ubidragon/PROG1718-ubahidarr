@@ -1,18 +1,18 @@
-package Tarea4.utilidades ;
+package utilidades;
 
 import java.util.Scanner;
 
 /**
- * Esta clase define algunos métodos para entrada de datos, de forma que se 
- * capturen los errores de entrada sin abortar, en caso de que el usuario 
- * introduzca datos no válidos.
- * También incluye un par de métodos para simplificar la escritura de mensajes
- * en pantalla, abreviando la escritura de las sentencias System.out.println()
- * y System.out.print(). Se hace uso también de la sobrecarga de métodos, 
- * que es algo que se había visto con los constructores, pero sin entrar en
- * detalle. Así, podemos tener tres métodos para leer enteros, que se llaman 
- * todos igual, pero que se diferencian en su lista de parámetros. 
- * 
+ * Esta clase define algunos métodos para entrada de datos, de forma que se
+ * capturen los errores de entrada sin abortar, en caso de que el usuario
+ * introduzca datos no válidos. También incluye un par de métodos para
+ * simplificar la escritura de mensajes en pantalla, abreviando la escritura de
+ * las sentencias System.out.println() y System.out.print(). Se hace uso también
+ * de la sobrecarga de métodos, que es algo que se había visto con los
+ * constructores, pero sin entrar en detalle. Así, podemos tener tres métodos
+ * para leer enteros, que se llaman todos igual, pero que se diferencian en su
+ * lista de parámetros.
+ *
  * @author Profesor
  */
 public class ES {
@@ -106,9 +106,9 @@ public class ES {
      * sea mayor o igual que el valor mínimo indicado como parámetro. La lectura
      * se estará repitiendo hasta que el valor suministrado esté en ese rango.
      *
-     * @param mensaje  Es el mensaje que se muestra para solicitar la
+     * @param mensaje Es el mensaje que se muestra para solicitar la
      * introducción del número.
-     * @param minimo  Es el valor más pequeño dentro del rango de los números
+     * @param minimo Es el valor más pequeño dentro del rango de los números
      * enteros tipo int que se aceptará como válido.
      * @return El número entero leído.
      */
@@ -147,7 +147,7 @@ public class ES {
      * enteros tipo int que se aceptará como válido.
      * @return El número entero leído.
      * @throws IllegalArgumentException Lanza excepci?n si el parámetro mínimo
-     *   es mayor que el mínimo.
+     * es mayor que el mínimo.
      */
     public static int leeEntero(int minimo, int maximo) throws IllegalArgumentException {
         int numero = 0;
@@ -192,7 +192,7 @@ public class ES {
      * enteros tipo int que se aceptará como válido.
      * @return El número entero leído.
      * @throws IllegalArgumentException Lanza excepci?n si el parámetro mínimo
-     *   es mayor que el mínimo.
+     * es mayor que el mínimo.
      */
     public static int leeEntero(String mensaje, int minimo, int maximo) throws IllegalArgumentException {
         int numero = 0;
@@ -221,8 +221,6 @@ public class ES {
         return numero;
     }
 
-    
-
     /**
      * Este método lee una cadena de caracteres desde teclado, y comprueba que
      * efectivamente la lectura se ha producido correctamente, mandando un
@@ -248,8 +246,8 @@ public class ES {
      * lectura se ha producido correctamente, mandando un mensaje de error en
      * caso de que haya fallado.
      *
-     * @param mensaje Es el mensaje que se env?a solicitando la introducción
-     * de la cadena de texto.
+     * @param mensaje Es el mensaje que se env?a solicitando la introducción de
+     * la cadena de texto.
      * @return La cadena de caracteres leído desde el teclado.
      */
     public static String leeCadena(String mensaje) {
@@ -269,7 +267,7 @@ public class ES {
      * pero tiene la ventaja de que su escritura es más corta y ahorra algo de
      * trabajo en programas donde la sentencia System.out.print() se use mucho.
      *
-     * @param entero  Es es el valor entero de tipo int a imprimir como texto.
+     * @param entero Es es el valor entero de tipo int a imprimir como texto.
      */
     public static void msg(int entero) {
         System.out.print(entero);
@@ -292,7 +290,7 @@ public class ES {
      * pero tiene la ventaja de que su escritura es más corta y ahorra algo de
      * trabajo en programas donde la sentencia System.out.print() se use mucho.
      *
-     * @param real  Es es el valor real de tipo float a imprimir como texto.
+     * @param real Es es el valor real de tipo float a imprimir como texto.
      */
     public static void msg(float real) {
         System.out.print(real);
@@ -315,8 +313,8 @@ public class ES {
      * pero tiene la ventaja de que su escritura es más corta y ahorra algo de
      * trabajo en programas donde la sentencia System.out.print() se use mucho.
      *
-     * @param cadenaAImprimir Es la cadena de texto que hay que escribir en
-     * el dispositivo de salida estándar.
+     * @param cadenaAImprimir Es la cadena de texto que hay que escribir en el
+     * dispositivo de salida estándar.
      */
     public static void msg(String cadenaAImprimir) {
         System.out.print(cadenaAImprimir);
@@ -388,25 +386,20 @@ public class ES {
      * trabajo en programas donde la sentencia System.out.println() se use
      * mucho.
      *
-     * @param cadenaAImprimir Es la cadena de texto que hay que escribir en
-     * el dispositivo de salida estándar.
+     * @param cadenaAImprimir Es la cadena de texto que hay que escribir en el
+     * dispositivo de salida estándar.
      */
     public static void msgln(String cadenaAImprimir) {
         System.out.println(cadenaAImprimir);
     }
 
-    
-   
-    
-
-    
     /**
      * Lee desde teclado una respuesta para una pregunta de tipo Sí o No,
      * mostrando por pantalla la pregunta en cuestión. Sólo se admiten como
      * respuestas S, s, N o bien n.
      *
-     * @param mensaje  Es el mensaje que se env?a con la pregunta cuya
-     * respuesta se espera que sea S o N.
+     * @param mensaje Es el mensaje que se env?a con la pregunta cuya respuesta
+     * se espera que sea S o N.
      * @return la cadena "S" si se ha respondido "S" o "s" y la cadena "N" si se
      * ha respondido "N" o "n".
      */
@@ -419,7 +412,7 @@ public class ES {
             try {
                 teclado = new Scanner(System.in);
                 cadena = teclado.nextLine();
-                if ( cadena!= null && cadena.length() == 1 && ((cadena.equalsIgnoreCase("S")) || (cadena.equalsIgnoreCase("N")))) {
+                if (cadena != null && cadena.length() == 1 && ((cadena.equalsIgnoreCase("S")) || (cadena.equalsIgnoreCase("N")))) {
                     correcta = true;
                 } else {
                     ES.msgln("Error: Solo se admite como respuesta un único carácter, que debe ser 's', 'S', 'n' o 'N'.");
@@ -430,22 +423,21 @@ public class ES {
         } while (!correcta);
         return cadena.toUpperCase();
     }
-    
-    
+
     /**
      * Lee un carácter de teclado.
+     *
      * @param mensaje Mensaje a mostrar por pantalla
      * @return El carácter leído por teclado.
      */
     public static char leeCaracter(String mensaje) {
-      
+
         Scanner teclado = null;
         teclado = new Scanner(System.in);
         ES.msgln(mensaje);
-        String cadena=teclado.next();
-        char caracter = cadena.charAt(0); 
-        return caracter ;
+        String cadena = teclado.next();
+        char caracter = cadena.charAt(0);
+        return caracter;
     }
-    
-    
+
 }//class ES
