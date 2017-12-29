@@ -3,6 +3,7 @@
  */
 package sopasdeletras;
 
+import Tarea04.sopasdeletras.SopaLetras;
 import utilidades.ES;
 
 /**
