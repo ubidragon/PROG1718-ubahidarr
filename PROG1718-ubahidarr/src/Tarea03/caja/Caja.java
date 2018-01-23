@@ -134,7 +134,7 @@ public class Caja {
      * Metodo que dibuja por consola la caja
      * @return Devuelve un tipo String con el dibujo realizado
      */
-    public String dibujar() {
+    public void dibujar() {
         String caja ="";
 
         for (int i = 0; i < getX(); i++) {
@@ -145,7 +145,7 @@ public class Caja {
             System.out.println(caja);
 
         }
-        return caja;
+       
     }
 
     /**

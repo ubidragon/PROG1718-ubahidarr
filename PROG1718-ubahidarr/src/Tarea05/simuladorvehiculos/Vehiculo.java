@@ -6,22 +6,49 @@
 package Tarea05.simuladorvehiculos;
 
 /**
- * Clase para generar vehiculos y realizar operaciones con ellos. Tambien
- * podremos llevar estadisticas de los mismos a nivel individual, como a nivel
- * de flota.
+ * Clase que representa un <strong>vehículo</strong>.
+ * <p>
+ * Los objetos de esta clase contienen atributos que que permiten almacenar
+ * información sobre:</p>
+ * <ul>
+ * <li><strong>Capacidad del depósito</strong> de combustible (litros).</li>
+ * <li><strong>Consumo medio</strong> del vehículo (litros/100km).</li>
+ * <li><strong>Estado del motor</strong> (<strong>encendido</strong> o
+ * <strong>apagado</strong>).</li>
+ * <li><strong>Nivel de combustible</strong> actual (litros).</li>
+ * <li><strong>Distancia recorrida</strong> desde que se arrancó el motor por
+ * última vez (y no se ha apagado) (km).</li>
+ * <li><strong>Distancia recorrida total</strong> desde que el objeto se creó
+ * (km).</li>
+ * <li><strong>Combustible consumido</strong> desde que se arrancó el motor por
+ * última vez (y no se ha apagado) (litros).</li>
+ * <li><strong>Combustible total consumido</strong> desde que el objeto se creó
+ * (litros).</li>
+ * </ul>
+ * <p>
+ * La clase también dispone de información general independiente de los objetos
+ * concretos que se hayan creado. Es el caso de:</p>
+ * <ul>
+ * <li><strong>Distancia recorrida total</strong> por <strong>todos los
+ * vehículos</strong> que se hayan creado hasta el momento (km).</li>
+ * <li><strong>Combustible total consumido</strong> por <strong>todos los
+ * vehículos</strong> que se hayan creado hasta el momento (litros).</li>
+ * <li><strong>Número de vehículos</strong> con el <strong>motor
+ * encendido</strong> en el momento actual.</li>
+ * </ul>
  *
  * @author Ubaldo Hidalgo Arriaga
  */
 public class Vehiculo {
 
+    //Declaracion de atributos
     private double capacidadDeposito, consumoMedio, nivelCombustible, distanciaRecorrida, combustibleConsumido, distanciaRecorridaTotal, combustibleConsumidoTotal;
-
     private boolean arrancado = false;
-
+    //Declaracion e inicializacion de atributos estaticos
     private static double distanciaRecorridaFlota = 0.;
     private static double combustibleConsumidoFlota = 0.;
     private static long numVehiculosArrancadosFlota = 0L;
-
+    //Declaracion de constantes
     private final double MINIMO_CONSUMO_MEDIO = 2.;
     private final double MAXIMO_CONSUMO_MEDIO = 20.;
     private final double MINIMA_CAPACIDAD_DEPOSITO = 10.;
@@ -31,205 +58,11 @@ public class Vehiculo {
     private final double CONSUMO_COMBUSTIBLE_ARRANQUE = 0.02;
 
     /**
-     * Metodo getter con la capcidad del deposito
-     *
-     * @return capacidad del vehiculo
+     * **Constructores***
      */
-    public double getCapacidadDeposito() {
-        return capacidadDeposito;
-    }
-
     /**
-     * Metodo getter con el consumo medio del vehiculo
-     *
-     * @return consumo del vehiculo
-     */
-    public double getConsumoMedio() {
-        return consumoMedio;
-    }
-
-    /**
-     * Metodo getter con el nivel de combustible del deposito
-     *
-     * @return El combustible restante en el deposito
-     */
-    public double getNivelCombustible() {
-        return nivelCombustible;
-    }
-
-    /**
-     * Metodo setter del Nivel de Combustible
-     *
-     * @param nivelCombustible parametro del nuevo nivel de combustible
-     */
-    public void setNivelCombustible(double nivelCombustible) {
-        this.nivelCombustible = nivelCombustible;
-    }
-
-    /**
-     * Metodo getter de la distancia recorrida desde que se arranco el coche
-     *
-     * @return distancia recorrida desde el ultimo arranque
-     */
-    public double getDistanciaRecorrida() {
-        return distanciaRecorrida;
-    }
-
-    /**
-     * Metodo para modificar la distancia que ha recorrido el vehiculo
-     *
-     * @param distanciaRecorrida nueva distancia recorrida desde el arranque
-     */
-    public void setDistanciaRecorrida(double distanciaRecorrida) {
-        this.distanciaRecorrida = distanciaRecorrida;
-    }
-
-    /**
-     * Metodo getter del Combustible que ha consumido el vehiculo desde que se
-     * arranco
-     *
-     * @return el combustible que lleva consumido
-     */
-    public double getCombustibleConsumido() {
-        return combustibleConsumido;
-    }
-
-    /**
-     * Metodo para modificar el combustible consumido desde el arranque
-     *
-     * @param combustibleConsumido cambia a un nuevo valor el combustible que
-     * lleva consumido el vehiculo
-     */
-    public void setCombustibleConsumido(double combustibleConsumido) {
-        this.combustibleConsumido = combustibleConsumido;
-    }
-
-    /**
-     * Metodo getter de la distancia que hay recorrido el vehiculo desde que
-     * este se creo
-     *
-     * @return devuelve la distancia total que ha recorrido
-     */
-    public double getDistanciaRecorridaTotal() {
-        return distanciaRecorridaTotal;
-    }
-
-    /**
-     * Metodo para modificar la distancia que lleva recorrida el vehiculo desde
-     * que este se creo
-     *
-     * @param distanciaRecorridaTotal nueva distancia que ha recorrido el
-     * vehiculo
-     */
-    public void setDistanciaRecorridaTotal(double distanciaRecorridaTotal) {
-        this.distanciaRecorridaTotal = distanciaRecorridaTotal;
-    }
-
-    /**
-     * Metodo getter del combustible que lleva consumido el vehiculo desde que
-     * este fue generado
-     *
-     * @return El combustible que lleva consumido
-     */
-    public double getCombustibleConsumidoTotal() {
-        return combustibleConsumidoTotal;
-    }
-
-    /**
-     * Metodo para modificar el combustible que se ha consumido desde la
-     * creacion del vehiculo
-     *
-     * @param combustibleConsumidoTotal nuevo combustible consumido
-     */
-    public void setCombustibleConsumidoTotal(double combustibleConsumidoTotal) {
-        this.combustibleConsumidoTotal = combustibleConsumidoTotal;
-    }
-
-    /**
-     * Metodo getter para saber si esta arrancado o no
-     *
-     * @return true o false son los valores de arrancado
-     */
-    public boolean isArrancado() {
-        return arrancado;
-    }
-
-    /**
-     * Metodo para modificar el estado del vehiculo
-     *
-     * @param arrancado true o false en funcion de su nuevo estado
-     */
-    public void setArrancado(boolean arrancado) {
-        this.arrancado = arrancado;
-    }
-
-    /**
-     * Metodo getter para saber la distancia recorrida en computo general de
-     * toda la flota de vehiculos
-     *
-     * @return el numero de kilometros que ha recorrido toda la flota
-     */
-    public static double getDistanciaRecorridaFlota() {
-
-        return distanciaRecorridaFlota;
-    }
-
-    /**
-     * Metodo que modifica el valor de la distancia que ha recorrido en computo
-     * general toda la flota
-     *
-     * @param distanciaRecorridaFlota la nueva distancia recorrida por la flota
-     */
-    public static void setDistanciaRecorridaFlota(double distanciaRecorridaFlota) {
-
-        Vehiculo.distanciaRecorridaFlota = distanciaRecorridaFlota;
-    }
-
-    /**
-     * Metodo para modificar el numero total de litros consumidos por la flota
-     *
-     * @param combustibleConsumidoFlota el nuevo numero de combustible consumido
-     * por la flota
-     */
-    public static void setCombustibleConsumidoFlota(double combustibleConsumidoFlota) {
-
-        Vehiculo.combustibleConsumidoFlota = combustibleConsumidoFlota;
-    }
-
-    /**
-     * Metodo para actualizar el valor del numero de vehiculos arrancados en ese
-     * momento
-     *
-     * @param numVehiculosArrancadosFlota numero de vehiculos arrancados
-     */
-    public static void setNumVehiculosArrancadosFlota(long numVehiculosArrancadosFlota) {
-        Vehiculo.numVehiculosArrancadosFlota = numVehiculosArrancadosFlota;
-    }
-
-    /**
-     * Metodo getter statico del combustible total consumido por todos los
-     * vehiculos de la flota
-     *
-     * @return El combustible consumido de toda la flota
-     */
-    public static double getCombustibleConsumidoFlota() {
-
-        return combustibleConsumidoFlota;
-    }
-
-    /**
-     * Metodo getter statico para determinar cuantos vehiculos se encuentran
-     * arrancados en este momento
-     *
-     * @return el numero de vehiculos arrancados
-     */
-    public static long getNumVehiculosArrancadosFlota() {
-
-        return numVehiculosArrancadosFlota;
-    }
-
-    /**
-     * Metodo constructor por defecto.
+     * Metodo constructor por defecto. Crea un objeto Vehiculo con un consumo
+     * medio de 5.0 litros/100km y un depósito de una capacidad de 50.0 litros.
      *
      */
     public Vehiculo() {
@@ -240,13 +73,15 @@ public class Vehiculo {
     }
 
     /**
-     * Metodo constructor a partir de parametros
+     * Constructor con parámetros.
      *
-     * @param capacidadDeposito capacidad del deposito del vehiculo
-     * @param consumoMedio consumo del vehiculo
+     * @param capacidadDeposito Capacidad del depósito del vehículo (litros).
+     * Debe estar entre 10.0 y 120.0
+     * @param consumoMedio Consumo medio del vehículo (l/100km). Debe estar
+     * entre 2.0 y 20.0.
      *
-     * @throws IllegalArgumentException Se puede producir por una capacidad o
-     * consumo erroneo respecto a los maximos o minimos preestablecidos
+     * @throws IllegalArgumentException Si alguno de los parámetros está fuera
+     * del rango permitido.
      */
     public Vehiculo(double consumoMedio, double capacidadDeposito) {
 
@@ -261,15 +96,123 @@ public class Vehiculo {
     }
 
     /**
-     * Metodo para repostar vehiculos
+     * *****GETTERS******
+     */
+    /**
      *
-     * @param litros numero de litros que vamos a repostar
-     * @throws IllegalStateException Si se intenta repostar con el motor
-     * encendido saltara una excepcion ya que no se puede repostar estando el
-     * vehiculo encendido.
-     * @throws IllegalArgumentException Si se intenta repostar mas litros de los
-     * que le puede caber al deposito se lanza una excepcion para indicarnos
-     * cuantos litros se han desbordado.
+     * @return La capacidad del depósito de combustible del vehículo (en
+     * litros).
+     */
+    public double getCapacidadDeposito() {
+        return capacidadDeposito;
+    }
+
+    /**
+     *
+     * @return El consumo medio del vehículo (en litros/100km).
+     */
+    public double getConsumoMedio() {
+        return consumoMedio;
+    }
+
+    /**
+     *
+     * @return El nivel actual del depósito de combustible del vehículo (en
+     * litros).
+     */
+    public double getNivelCombustible() {
+        return nivelCombustible;
+    }
+
+    /**
+     *
+     * @return La distancia recorrida por el vehículo desde que ha sido
+     * arrancado por última vez (en km). El vehículo debe estar arrancado. Si
+     * no, los contadores se habrán puesto a cero.
+     */
+    public double getDistanciaRecorrida() {
+        return distanciaRecorrida;
+    }
+
+    /**
+     *
+     * @return El combustible que ha sido consumido por el vehículo desde que ha
+     * sido arrancado por última vez (en litros). El vehículo debe estar
+     * arrancado. Si no, los contadores se habrán puesto a cero.
+     */
+    public double getCombustibleConsumido() {
+        return combustibleConsumido;
+    }
+
+    /**
+     *
+     * @return La distancia total recorrida por el vehículo desde su
+     * fabricación.
+     */
+    public double getDistanciaRecorridaTotal() {
+        return distanciaRecorridaTotal;
+    }
+
+    /**
+     *
+     * @return El combustible total que ha sido consumido por el vehículo desde
+     * su fabricación (en litros).
+     */
+    public double getCombustibleConsumidoTotal() {
+        return combustibleConsumidoTotal;
+    }
+
+    /**
+     *
+     * @return Si el motor del vehículo está arrancado o no.
+     */
+    public boolean isArrancado() {
+        return arrancado;
+    }
+
+    /**
+     *
+     * @return La distancia recorrida total por todos los vehículos que se hayan
+     * creado hasta el momento (en km).
+     */
+    public static double getDistanciaRecorridaFlota() {
+        return distanciaRecorridaFlota;
+    }
+
+    /**
+     *
+     * @return El combustible total que ha sido consumido por todos los
+     * vehículos que hayan sido creados hasta el momento (en litros).
+     */
+    public static double getCombustibleConsumidoFlota() {
+        return combustibleConsumidoFlota;
+    }
+
+    /**
+     *
+     * @return El número de vehículos que haya con el motor encendido en ese
+     * momento.
+     */
+    public static long getNumVehiculosArrancadosFlota() {
+        return numVehiculosArrancadosFlota;
+    }
+
+    /**
+     * ****Metodos de Accion*****
+     */
+    /**
+     * Rellena el depósito de combustible del vehículo con una cantidad de
+     * litros. Recibirá un parámetro que indicará la cantidad de litros para
+     * repostar. Se actualizará el nivel de combustible del vehículo en función
+     * del valor del parámetro que se le pase. Ahora bien, podrían darse algunos
+     * casos de error lanzarán una excepción.
+     *
+     * @param litros Cantidad de litros para repostar.
+     * @throws IllegalStateException Si el motor está arrancado.
+     * @throws IllegalArgumentException Si la cantidad de combustible que se
+     * intenta repostar es superior a la que puede admitir el depósito en ese
+     * momento. El depósito se llenará completamente pero se producirá un
+     * rebosamiento.
      */
     public void repostar(double litros) {
 
@@ -277,17 +220,22 @@ public class Vehiculo {
             throw new IllegalStateException("Error: Se intento repostar con el motor encendido. No se ha repostado");
 
         } else if (capacidadDeposito < (nivelCombustible + litros)) {
+
             double desbordado = ((nivelCombustible + litros) - capacidadDeposito);
-            setNivelCombustible(getNivelCombustible() + litros - desbordado);
+            this.nivelCombustible += (litros - desbordado);
+
             throw new IllegalArgumentException("Error: Deposito lleno. Se ha desbordado el combustible en " + desbordado + " litros");
+
         } else {
 
-            setNivelCombustible(getNivelCombustible() + litros);
+            this.nivelCombustible += litros;
+
         }
     }
 
     /**
-     * Metodo para realziar el arranque del vehiculo
+     * Arranca el motor del vehículo. Esta acción hará que se produzca un
+     * pequeño consumo de combustible de 0.02 litros.
      *
      * @throws IllegalStateException Se produce si intentamos arrancar el motor
      * estando este ya encendido
@@ -296,7 +244,7 @@ public class Vehiculo {
      */
     public void arrancar() {
 
-        if (isArrancado()) {
+        if (isArrancado() == true) {
 
             throw new IllegalStateException("Error: el motor ya se encuentra arrancado");
 
@@ -306,24 +254,27 @@ public class Vehiculo {
 
         } else {
             //pasamos a estado arrancado
-            setArrancado(true);
+            this.arrancado = true;
             //añado vehiculo arrancado
-            setNumVehiculosArrancadosFlota(getNumVehiculosArrancadosFlota() + 1);
-            setNivelCombustible(getNivelCombustible() - CONSUMO_COMBUSTIBLE_ARRANQUE);
-            setCombustibleConsumido(getCombustibleConsumido() + CONSUMO_COMBUSTIBLE_ARRANQUE);
-            setCombustibleConsumidoTotal(getCombustibleConsumidoTotal() + CONSUMO_COMBUSTIBLE_ARRANQUE);
-            setCombustibleConsumidoFlota(getCombustibleConsumidoFlota() + CONSUMO_COMBUSTIBLE_ARRANQUE);
+            numVehiculosArrancadosFlota = getNumVehiculosArrancadosFlota() + 1;
+            //Actualizo valores de combustible
+            this.nivelCombustible -= CONSUMO_COMBUSTIBLE_ARRANQUE;
+            this.combustibleConsumido += CONSUMO_COMBUSTIBLE_ARRANQUE;
+            this.combustibleConsumidoTotal += CONSUMO_COMBUSTIBLE_ARRANQUE;
+            combustibleConsumidoFlota += CONSUMO_COMBUSTIBLE_ARRANQUE;
+
         }
     }
 
     /**
-     * Metodo para realizar un trayecto con distancia que le pasemos como
-     * parametro. Tambien actualizara todos los datos referidos a Combustible y
-     * Distancia.
+     * Hace que el vehículo realice un trayecto de una determinada cantidad de
+     * kilómetros que se pasarán como parámetro.
      *
-     * @param trayecto distancia que se intentara recorrer
-     * @throws IllegalArgumentException Se producira una excepcion si se intenta
-     * recorrer una distancia negativa
+     * @param trayecto Distancia en km que se desea recorrer.
+     * @throws IllegalArgumentException Si no hay combustible suficiente para
+     * recorrer esa distancia. En tal caso se consume todo el depósito, se
+     * recorre la distancia que sea posible, y se apaga el motor. También se
+     * puede producir esta excepción si la distancia proporcionada es negativa.
      * @throws IllegalStateException Se producira una excepcion si intentamos
      * realizar un trayecto con el motor apagado
      * @throws IllegalArgumentException Se producira una excepcion si no hay
@@ -339,24 +290,24 @@ public class Vehiculo {
 
             throw new IllegalArgumentException("Error: Se intento realizar un trayecto negativo");
 
-        } else if (!isArrancado()) {
+        } else if (isArrancado() == false) {
 
             throw new IllegalStateException("Error: Se intento realizar un trayecto con el motor apagado. No se ha avanzado");
 
         } else if ((nivelCombustible - consumoTrayecto) < 0) {
 
             //Calculo la distancia que me falta por recorrer
-            double distanciaRestante = trayecto - (nivelCombustible / (consumoMedio) * 100);
+            double distanciaRestante = trayecto - (this.nivelCombustible / (this.consumoMedio) * 100);
             //añado el combustible consumido que es lo que nos queda en el deposito
-            setCombustibleConsumido(getCombustibleConsumido() + nivelCombustible);
-            setCombustibleConsumidoTotal(getCombustibleConsumidoTotal() + nivelCombustible);
-            setCombustibleConsumidoFlota(getCombustibleConsumidoFlota() + nivelCombustible);
+            this.combustibleConsumido += this.nivelCombustible;
+            this.combustibleConsumidoTotal += this.nivelCombustible;
+            combustibleConsumidoFlota += this.nivelCombustible;
             //añado la distancia que el combustible nos permite recorrer
-            setDistanciaRecorrida(getDistanciaRecorrida() + (nivelCombustible / (consumoMedio)) * 100);
-            setDistanciaRecorridaTotal(getDistanciaRecorridaTotal() + (nivelCombustible / (consumoMedio)) * 100);
-            setDistanciaRecorridaFlota(getDistanciaRecorridaFlota() + (nivelCombustible / (consumoMedio)) * 100);
+            this.distanciaRecorrida += ((this.nivelCombustible / (this.consumoMedio)) * 100);
+            this.distanciaRecorridaTotal += ((this.nivelCombustible / (this.consumoMedio)) * 100);
+            distanciaRecorridaFlota += ((this.nivelCombustible / (this.consumoMedio)) * 100);
             //Reinicio el deposito
-            setNivelCombustible(0.);
+            this.nivelCombustible = 0.; //setNivelCombustible(0.);
             //apago el motor
             apagar();
 
@@ -365,28 +316,25 @@ public class Vehiculo {
 
         } else {
             //Le quito al deposito lo que consume el trayecto
-
-            setNivelCombustible(getNivelCombustible() - consumoTrayecto);
+            this.nivelCombustible -= consumoTrayecto;
             //Le añado lo que recorro a la distancia
-            setDistanciaRecorrida(getDistanciaRecorrida() + trayecto);
-            setDistanciaRecorridaTotal(getDistanciaRecorridaTotal() + trayecto);
-            setDistanciaRecorridaFlota(getDistanciaRecorridaFlota() + trayecto);
+            this.distanciaRecorrida += trayecto;
+            this.distanciaRecorridaTotal += trayecto;
+            Vehiculo.distanciaRecorridaFlota += trayecto;
             //contabilizo el combustible que consumo
-            setCombustibleConsumido(getCombustibleConsumido() + consumoTrayecto);
-            setCombustibleConsumidoTotal(getCombustibleConsumidoTotal() + consumoTrayecto);
-            setCombustibleConsumidoFlota(getCombustibleConsumidoFlota() + consumoTrayecto);
+            this.combustibleConsumido += consumoTrayecto;
+            this.combustibleConsumidoTotal += consumoTrayecto;
+            combustibleConsumidoFlota += consumoTrayecto;
 
         }
 
     }
 
     /**
-     * Metodo para realizar el apagado del motor. Tambien reiniciar los
-     * parametros de Combustible y Distancia que se establecieron mientras el
-     * motor estuvo arrancado
+     * Apaga el motor del vehículo y reinicia a cero los indicadores de consumo
+     * y distancia recorrida desde el último arranque.
      *
-     * @throws IllegalStateException Se producira una excepcion si el motor ya
-     * se encuentra apagado. No realizara ninguna operacion mas.
+     * @throws IllegalStateException Si el motor ya está apagado.
      */
     public void apagar() {
 
@@ -394,24 +342,58 @@ public class Vehiculo {
             throw new IllegalStateException("Error: El motor ya se encuentra apagado");
         } else {
             //elimino vehiculo arrancado por pasar a estado apagado
-            setNumVehiculosArrancadosFlota(getNumVehiculosArrancadosFlota() - 1);
+
+            numVehiculosArrancadosFlota = numVehiculosArrancadosFlota - 1;
             //pasamos a estado apagado
-            setArrancado(false);
+            arrancado = false;
             //reiniciamos combustible y distancia            
-            setCombustibleConsumido(0.);
-            setDistanciaRecorrida(0.);
+
+            this.combustibleConsumido = 0.;
+
+            this.distanciaRecorrida = 0.;
 
         }
 
     }
 
     /**
-     * Metodo toString de la clase, con el que imprimiremos por pantalla los
-     * datos referidos al vehiculo
+     * **toString****
+     */
+    /**
      *
-     * @return un string con los datos de si esta arrancado o no, el nivel del
-     * deposito, la distancia recorrida y finalmente el combustible que hayamos
-     * consumido
+     *
+     * @return
+     * <p>
+     * Cadena que representa el estado actual del vehículo proporcionando la
+     * siguiente información:</p>
+     * <ol>
+     * <li><strong>Estado del motor</strong> (<strong>encendido</strong> o
+     * <strong>apagado</strong>).</li>
+     * <li><strong>Nivel del depósito de combustible</strong>.</li>
+     * <li><strong>Distancia recorrida</strong> desde que se ha arrancado (si es
+     * que el motor está arrancado, pues si está apagado será obviamente
+     * cero).</li>
+     * <li><strong>Consumo realizado</strong> desde que se ha arrancado (si es
+     * que el motor está arrancado, pues si está apagado será obviamente
+     * cero).</li>
+     * </ol>
+     * <p>
+     * <strong>El formato de salida</strong> será del siguiente tipo: </p>
+     * <pre>Motor: XXX - Deposito: YYY - Dist: ZZZ - Consumo: VVV</pre>
+     * <p>
+     * donde XXX podrá ser encendido o apagado; YYY será el nivel del depósito
+     * expresado en litros y con dos decimales; ZZZ será la distancia recorrida
+     * expresada en kilómetros y con dos decimales, y VVV el consumo expresado
+     * en litros y con dos decimales.</p>
+     * <p>
+     * Algunos ejemplos de este <code>String</code> de salida podrían ser:</p>
+     * <ul>
+     * <li><pre>Motor: apagado   - Depósito:   0,00 - Dist:     0,00 - Consumo:     0,00</pre></li>
+     * <li><pre>Motor: arrancado - Depósito:   4,98 - Dist:     0,00 - Consumo:     0,02</pre></li>
+     * <li><pre>Motor: arrancado - Depósito:   4,23 - Dist:    15,00 - Consumo:     0,77</pre></li>
+     * <li><pre>Motor: apagado   - Depósito:   4,23 - Dist:     0,00 - Consumo:     0,00</pre></li>
+     * <li><pre>Motor: arrancado - Depósito:   4,68 - Dist:    10,00 - Consumo:     0,32</pre></li>
+     * </ul>
      *
      */
     public String toString() {
