@@ -397,10 +397,17 @@ public class Vehiculo {
      *
      */
     public String toString() {
-        return "Motor: " + (isArrancado() ? "arrancado" : "apagado") + " - Deposito: "
-                + (String.format("%.2f", getNivelCombustible())) + " - Dist: "
-                + getDistanciaRecorrida() + " - Consumo: "
-                + (String.format("%.2f", getCombustibleConsumido()));
+
+        StringBuilder resultado = new StringBuilder("Motor: ");
+        resultado.append(isArrancado() ? "arrancado":"apagado");
+        resultado.append(" - Deposito: ");
+        resultado.append((String.format("%.2f", getNivelCombustible())));
+        resultado.append(" - Dist: ");
+        resultado.append(getDistanciaRecorrida());
+        resultado.append(" - Consumo: ");
+        resultado.append((String.format("%.2f",getCombustibleConsumido())));
+
+        return resultado.toString();
     }
 
 }
