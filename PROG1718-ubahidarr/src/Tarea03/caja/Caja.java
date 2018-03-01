@@ -32,7 +32,7 @@ public class Caja {
     public int x;
     public int y;
     public char caracter;
-    public Material material;
+    private Material material;
 
     /**
      * Tipo Enumerado de Materiales
@@ -131,18 +131,32 @@ public class Caja {
     }
 
     /**
+     * @return the material
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * @param material the material to set
+     */
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    /**
      * Metodo que dibuja por consola la caja
      * @return Devuelve un tipo String con el dibujo realizado
      */
     public void dibujar() {
-        String caja ="";
+        String linea ="";
 
         for (int i = 0; i < getX(); i++) {
-            caja += getCaracter();
+            linea += getCaracter();
 
         }
         for (int j = 0; j < getY(); j++) {
-            System.out.println(caja);
+            System.out.println(linea);
 
         }
        
@@ -211,7 +225,7 @@ public class Caja {
      * @return Imprime la informacion del objeto Caja que hemos creado
      */
     public String toString() {
-        return "La caja se dibuja con el caracter: \"" + caracter + "\" y se dibujara con: " + getX() + " columnas y " + getY() + " filas. El material de la caja es: " + this.material;
+        return "La caja se dibuja con el caracter: \"" + caracter + "\" y se dibujara con: " + getX() + " columnas y " + getY() + " filas. El material de la caja es: " + this.getMaterial();
     }
 
 }
